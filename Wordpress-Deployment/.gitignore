@@ -1,2 +1,11 @@
+# Terraform files
+.terraform/
 terraform.tfvars
+*.tfstate
+*.tfstate.backup
+crash.log
+
+# Sensitive files
 wp-key
+*.key
+*.pem
