@@ -34,9 +34,9 @@ This project builds on the structure and documentation style from my earlier AWS
 
 ## Steps and Configuration
 
-### Structure
-**Screenshot:**
-![file structure](./images/VPC-setup.png)
+#### Folder Structure
+
+![folder structure](./Wordpress-Deployment/images/folder-structure.jpg)
 
 #### Networking Setup
 
