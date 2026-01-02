@@ -2,7 +2,7 @@
 
 ## Introduction
 This project demonstrates a complete Infrastructure‑as‑Code (IaC) deployment of a WordPress application on AWS using Terraform.
-The goal was to design and provision a fully functional cloud environment — including networking, compute, security, automation, and application bootstrap — using modular Terraform code.
+The goal was to design and provision a fully functional cloud environment including networking, compute, security, automation and application bootstrap using modular Terraform code.
 
 The deployment includes:
 
@@ -14,7 +14,7 @@ The deployment includes:
 - Automated WordPress installation using user_data
 - Clean repo with variables, tfvars, and .gitignore separation
 
-This project builds on the structure and documentation style from my earlier AWS VPC project, but extends it by integrating compute, automation, and application deployment.
+This project builds on the structure and documentation style from my earlier AWS VPC project, but extends it by integrating compute, automation and application deployment.
 
 ---
 
@@ -22,6 +22,7 @@ This project builds on the structure and documentation style from my earlier AWS
 
 | Component            | Description                                                                 |
 |----------------------|----------------------------------------------------------------------------------------|
+| **VPC Module**              | Contains all networking resources (VPC, Subnet, IGW, Route table, SG)                                      |
 | **VPC**              | Custom VPC with CIDR block `10.0.0.0/16`                                      |
 | **Public Subnet**    | Subnet in eu-west-2a with auto‑assign public IP enabled                                 |
 | **Internet Gateway**   | Provides outbound internet access                     |
@@ -38,7 +39,9 @@ This project builds on the structure and documentation style from my earlier AWS
 
 ![folder structure](./Wordpress-Deployment/images/folder-structure.jpg)
 
-#### Networking Setup
+#### VPC Module
+
+The VPC includes all networking resources:
 
 - Created a VPC
 - Added a public subnet
@@ -69,6 +72,12 @@ This project builds on the structure and documentation style from my earlier AWS
 - Sets permissions
 - Restarts Apache
 
+#### Deployment
+
+     terraform init
+     terraform plan
+     terraform apply
+
 #### Wordpress Setup
 
 After applying the Terraform configuration and navigating to the EC2 public IP, the WordPress setup page loads successfully:
@@ -77,7 +86,7 @@ After applying the Terraform configuration and navigating to the EC2 public IP, 
 
 ## What I Learnt
 
-- How to structure Terraform projects using modules, variables, and tfvars
+- How to structure Terraform projects using multiple modules, variables and tfvars
 
 - How to build AWS networking from scratch (VPC, subnets, IGW, routing)
 
