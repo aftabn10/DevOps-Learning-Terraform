@@ -1,100 +1,50 @@
-# WordPress Deployment on AWS using Terraform
+# Projects
 
-## Introduction
-This project demonstrates a complete Infrastructure‑as‑Code (IaC) deployment of a WordPress application on AWS using Terraform.
-The goal was to design and provision a fully functional cloud environment including networking, compute, security, automation and application bootstrap using modular Terraform code.
+## Overview
+This repository contains a collection of Terraform-based learning projects designed to build practical DevOps skills through hands-on AWS deployments. 
+Each project focuses on a different aspect of infrastructure-as-code, cloud architecture, debugging, and modular design.
 
-The deployment includes:
+The goal of this repo is to document my progress as I learn Terraform, apply real-world patterns and strengthen my understanding of how cloud infrastructure behaves under the hood.
 
-- A custom VPC
-- A public subnet
-- Internet Gateway + routing
-- A modern, modular Security Group design
-- An EC2 instance deployed via a reusable module
-- Automated WordPress installation using user_data
-- Clean repo with variables, tfvars, and .gitignore separation
+Each project includes:
 
-This project builds on the structure and documentation style from my earlier AWS VPC project, but extends it by integrating compute, automation and application deployment.
+- A dedicated folder
+- A full Terraform configuration
+- A detailed README
+- Notes on debugging, decisions, and lessons learned
 
 ---
 
-## Summary of Configuration
+## Projects
 
-| Component            | Description                                                                 |
-|----------------------|----------------------------------------------------------------------------------------|
-| **VPC Module**              | Contains all networking resources (VPC, Subnet, IGW, Route table, SG)                                      |
-| **VPC**              | Custom VPC with CIDR block `10.0.0.0/16`                                      |
-| **Public Subnet**    | Subnet in eu-west-2a with auto‑assign public IP enabled                                 |
-| **Internet Gateway**   | Provides outbound internet access                     |
-| **Route Table** | Routes `0.0.0.0/0` traffic to the IGW                                             |
-| **Route Table Association**      | Associates the public subnet with the public route table           |
-| **Security Group**     | SG with separate ingress/egress rule resources                         |
-| **EC2 Module** | Reusable module deploying a **t3.micro** instance          |
-| **User Data** | Bootstraps Apache, PHP, MariaDB and WordPress         |
-| **Outputs**| Public IP and DNS for accessing WordPress                                        |
+**1. WordPress Deployment**
 
-## Steps and Configuration
+A full WordPress deployment using Terraform modules, including:
 
-#### Folder Structure
+- Custom VPC
+- Public and private subnets
+- Internet Gateway + NAT Gateway
+- EC2 instance
+- Security groups
+- User Data Script for WordPress setup
 
-![folder structure](./Wordpress-Deployment/images/folder-structure.jpg)
+This project focuses on multi-tier architecture, modular Terraform design and real-world cloud patterns.
 
-#### VPC Module
+**Folder**: [Wordpress Deployment](./Wordpress-Deployment/)
 
-The VPC includes all networking resources:
+**2. EC2 + NGINX Deployment**
 
-- Created a VPC
-- Added a public subnet
-- Attached an Internet Gateway
-- Configured a route table with a default route
-- Associated the subnet with the route table
+A simpler assignment designed to reinforce Terraform fundamentals and real-world debugging. 
 
-#### Security Group 
+This project focuses on EC2 provisioning, default VPC behaviour and cloud-init troubleshooting.
 
-- SG created empty
-- Ingress rules created separately
-- Egress rule created separately
-- Allows:
-    - HTTP from anywhere
-    - SSH from my IP (optional for debugging)
-    - All outbound traffic
+Key components:
 
-#### EC2 Module
+- EC2 instance in the default VPC
+- Nginx installed via cloud-init
+- SSH access restricted to my IP
+- Security group configuration
+- Key pair creation
+- Service debugging using systemctl
 
-- Reusable module
-- Accepts AMI, instance type, SG IDs, subnet ID and user_data
-
-#### WordPress Bootstrap via user_data
-
-- Installs Apache, PHP, MariaDB
-- Downloads and extracts WordPress
-- Removes default Apache index.html
-- Sets permissions
-- Restarts Apache
-
-#### Deployment
-
-     terraform init
-     terraform plan
-     terraform apply
-
-#### Wordpress Setup
-
-After applying the Terraform configuration and navigating to the EC2 public IP, the WordPress setup page loads successfully:
-
-![Wordpress Setup](Wordpress-Deployment/images/wp-setup.jpg)
-
-## What I Learnt
-
-- How to structure Terraform projects using multiple modules, variables and tfvars
-
-- How to build AWS networking from scratch (VPC, subnets, IGW, routing)
-
-- Modern Security Group design using separate rule resources
-
-- How user_data works and how to debug cloud-init
-
-- How to automate application deployment (Apache, PHP, WordPress)
-
-- How Terraform recreates resources when dependencies change
-
+**Folder**: [EC2 Deployment](./EC2-Deployment/)  
