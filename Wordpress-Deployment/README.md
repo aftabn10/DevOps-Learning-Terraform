@@ -37,7 +37,7 @@ This project builds on the structure and documentation style from my earlier AWS
 
 #### Folder Structure
 
-![folder structure](./Wordpress-Deployment/images/folder-structure.jpg)
+![folder structure](./images/folder-structure.jpg)
 
 #### VPC Module
 
@@ -82,7 +82,7 @@ The VPC includes all networking resources:
 
 After applying the Terraform configuration and navigating to the EC2 public IP, the WordPress setup page loads successfully:
 
-![Wordpress Setup](Wordpress-Deployment/images/wp-setup.jpg)
+![Wordpress Setup](./images/wp-setup.jpg)
 
 ## What I Learnt
 
